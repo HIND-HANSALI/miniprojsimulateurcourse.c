@@ -45,6 +45,42 @@ int printCongratulation(Race race){
     printf("Felicitons tous %s, dans la voiture de course %s, pour son incroyable performance.C'etait vraiment une belle course et bonne nuit a tous !",race.firstPlaceDriverName,race.firstPlaceRaceCarColor);
 
 }
+int calculateTimeToCompleteLap(){
+    int vitesse;
+    int acceleration;
+    int nerves;
+    time_t t;
+    srand((unsigned) time(&t));
+    vitesse=rand()%2+1;
+    acceleration=rand()%2+1;
+    nerves=rand()%2+1;
+
+
+    return (vitesse+acceleration+nerves);
+}
+void updateRaceCar(RaceCar *raceCar){
+    int i;
+    for(i=0;i<5;i++){
+       raceCar->totalLapTime=calculateTimeToCompleteLap()+(*raceCar).totalLapTime;
+
+    }
+}
+void updateFirstPlace(Race *race ,RaceCar *raceCar1 ,RaceCar *raceCar2 ){
+    if (raceCar1->totalLapTime >= raceCar2->totalLapTime){
+        strcpy(race->firstPlaceDriverName,raceCar1->driverName);
+        strcpy(race->firstPlaceRaceCarColor,raceCar2->raceCarColor);
+
+    }
+    else{
+        strcpy(race->firstPlaceDriverName,raceCar1->driverName);
+        strcpy(race->firstPlaceRaceCarColor,raceCar1->raceCarColor);
+
+    }
+}
+void startRace(RaceCar *raceCar1,RaceCar *courseCar2){
+
+}
+
 
 
 
@@ -61,8 +97,11 @@ main(){
 
     printIntro();
     printCountDown();
-    printFirstPlaceAfterLap(race);
-    printCongratulation(race);
+    printFirstPlaceAfterLap(race1);
+    printCongratulation(race2);
+    printf("resultat set %d",calculateTimeToCompleteLap());
+    updateRaceCar(&race1);
+    updateRaceCar(&race1);
 
 
 }
